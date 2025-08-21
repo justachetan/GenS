@@ -6,6 +6,8 @@
 </p>
 
 ## 📰 News
+- **[2025-07-01]** We release a smaller and more efficient 3B Frame Sampler [yaolily/GenS-qwen2d5-vl-3b](https://huggingface.co/yaolily/GenS-qwen2d5-vl-3b), refer to [details here](#efficiency-improvement).
+- **[2025-05-10]** We open-source the [custom lmms-eval](https://github.com/OuyangKun10/Aria-RAG-Eval) evaluation code that enables inputting retrieved frames instead of uniform sampling to different VideoLLMs. The retrieved frames by GenS can be restored from [rag files](https://huggingface.co/datasets/yaolily/GenS-rag-files).
 
 - **[2025-04-30]** We open-sourced GenS(Aria-based) model, code, and dataset! Try it in your long video QA projects requiring fewer but more informative frames.
 
@@ -41,6 +43,7 @@ GenS significantly boosts the performance of various VideoQA models, achieving S
 
 <img src="https://generative-sampler.github.io/static/images/table_main.png" alt="Main Results Table" style="width: 100%;">
 <img src="https://generative-sampler.github.io/static/images/hourvideo.png" alt="HourVideo Results Table" style="width: 100%;">
+
 
 ## Quick Start
 
@@ -111,6 +114,20 @@ print(f"Video: {video_dir}")
 print(f"Question: {question}")
 print(f"Relevant frames with scores: {result}")
 ```
+
+## Efficiency Improvement
+### GenS-qwen2d5-vl-3b
+We implement GenS based on [Qwen2.5VL-3B](https://huggingface.co/yaolily/GenS-qwen2d5-vl-3b) with low-resolution inputs (112×112 pixels) to achieve more efficient frame sampling while maintaining competitive performance. It is worth noting that our design of generative frame sampling is not limited to a specific VideoLLM (e.g., Aria/Qwen-VL) as the base model.
+
+<img width="1297" height="318" alt="gens3b" src="https://github.com/user-attachments/assets/8eb5f097-0970-40d2-95f1-f3f911926a53" />
+
+The inference code follows the original [Qwen2.5-VL-3B-Instruct](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct) model.
+
+### Hybrid Sampling with CLIP
+We propose a coarse-to-fine hybrid approach that combines CLIP with our GenS model to improve efficiency for long videos:
+- **Coarse sampling**: First adopt CLIP to densely sample frames from the 1 fps candidate pool and retrieve the top 256 most relevant frames
+- **Fine sampling**: Then apply GenS to re-sample the most informative frames within the 256-frame temporal window
+<img width="1327" height="413" alt="withclip" src="https://github.com/user-attachments/assets/b58f2836-c182-4fe8-a0c2-09b3ec5c421c" />
 
 
 ## Citation
