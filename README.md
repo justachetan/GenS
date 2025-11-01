@@ -58,10 +58,9 @@ pip install flash-attn --no-build-isolation
 ```
 2. To install as a python package
 ```bash
-# Quick install & usage
-
+# After cloning the repo
+cd GenS
 ## Install
-```bash
 pip install -e .
 ```
 
