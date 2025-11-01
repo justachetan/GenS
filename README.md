@@ -62,6 +62,7 @@ pip install flash-attn --no-build-isolation
 cd GenS
 ## Install
 pip install -e .
+pip install flash-attn --no-build-isolation
 ```
 
 

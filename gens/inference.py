@@ -164,7 +164,7 @@ def _tokenizer_image_token(
     return torch.tensor(input_ids)
 
 
-def setup_model(model_id="yaolily/GenS"):
+def setup_model(model_id="yaolily/GenS", attn_implementation="flast_attention_2"):
     """Set up and load the GenS model and its components.
     
     Args:
@@ -186,7 +186,7 @@ def setup_model(model_id="yaolily/GenS"):
     # Load model with optimizations
     model = AutoModel.from_pretrained(
         model_id,
-        attn_implementation="flash_attention_2",
+        attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
         torch_dtype=torch.bfloat16
     ).to(torch.device("cuda"))

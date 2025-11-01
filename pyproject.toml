@@ -12,6 +12,8 @@ dependencies = [
   "sentencepiece==0.2.0",
   "Pillow",
   "requests",
+  "torchvision",
+  "torch",
 ]
 
 [project.scripts]
