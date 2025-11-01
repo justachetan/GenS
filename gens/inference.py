@@ -189,7 +189,8 @@ def setup_model(model_id="yaolily/GenS", attn_implementation="flast_attention_2"
         attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
         torch_dtype=torch.bfloat16,
-        device_map="auto"
+        device_map="auto",
+        trust_remote_code=True
     )
     
     # Load tokenizer with special token handling
