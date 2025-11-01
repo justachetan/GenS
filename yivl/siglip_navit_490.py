@@ -27,8 +27,6 @@ from transformers.modeling_outputs import BaseModelOutputWithPooling
 
 # from transformers.models.llama.modeling_llama import _get_unpad_data
 from transformers.models.siglip.modeling_siglip import (
-    SIGLIP_START_DOCSTRING,
-    SIGLIP_VISION_INPUTS_DOCSTRING,
     SiglipAttention,
     SiglipEncoder,
     SiglipEncoderLayer,
@@ -434,7 +432,6 @@ class CustomSiglipVisionTransformer(nn.Module):
         self.embeddings = CustomSiglipVisionEmbeddings(config)
         self.encoder = CustomSiglipEncoder(config)
 
-    @add_start_docstrings_to_model_forward(SIGLIP_VISION_INPUTS_DOCSTRING)
     @replace_return_docstrings(
         output_type=BaseModelOutputWithPooling, config_class=SiglipVisionConfig
     )
@@ -519,7 +516,6 @@ class CustomSiglipVisionTransformer(nn.Module):
 
 @add_start_docstrings(
     """The vision model from SigLIP without any head or projection on top.""",
-    SIGLIP_START_DOCSTRING,
 )
 class CustomSiglipVisionModel(SiglipVisionModel):
     config_class = CustomSiglipVisionConfig
