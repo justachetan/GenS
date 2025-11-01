@@ -188,8 +188,9 @@ def setup_model(model_id="yaolily/GenS", attn_implementation="flast_attention_2"
         model_id,
         attn_implementation=attn_implementation,
         low_cpu_mem_usage=True,
-        torch_dtype=torch.bfloat16
-    ).to(torch.device("cuda"))
+        torch_dtype=torch.bfloat16,
+        device_map="auto"
+    )
     
     # Load tokenizer with special token handling
     tokenizer = AutoTokenizer.from_pretrained(model_id, use_fast=False, trust_remote_code=True)
