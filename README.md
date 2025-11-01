@@ -48,12 +48,23 @@ GenS significantly boosts the performance of various VideoQA models, achieving S
 ## Quick Start
 
 ### Installation
+
+1. If you would like to develop locally
 ```bash
 conda create -n gens python=3.11
 conda activate gens
 pip install transformers==4.45.0 accelerate==0.34.1 sentencepiece==0.2.0 torchvision requests torch Pillow
 pip install flash-attn --no-build-isolation
 ```
+2. To install as a python package
+```bash
+# Quick install & usage
+
+## Install
+```bash
+pip install -e .
+```
+
 
 ### Usage
 
