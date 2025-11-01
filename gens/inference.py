@@ -214,7 +214,7 @@ def gens_frame_sampler(question: str, frame_paths: List[str], model, tokenizer, 
     
     Args:
         question: The question to answer about the video
-        frame_paths: List of paths to video frames
+        frame_paths: List of paths to video frames or PIL images of the frames
         model: Pre-loaded GenS model
         tokenizer: Pre-loaded tokenizer
         processor: Pre-loaded image processor
@@ -226,7 +226,11 @@ def gens_frame_sampler(question: str, frame_paths: List[str], model, tokenizer, 
     frames = []
     for path in frame_paths:
         try:
-            img = Image.open(path).convert("RGB")
+            img = None
+            if isinstance(path, str):
+                img = Image.open(path).convert("RGB")
+            else:
+                img = path
             # Optional: resize images to expected size
             if img.width > 490 or img.height > 490:
                 ratio = min(490/img.width, 490/img.height)
