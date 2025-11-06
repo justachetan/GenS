@@ -210,7 +210,8 @@ def setup_model(model_id="yaolily/GenS", attn_implementation="flast_attention_2"
     return model, tokenizer, processor
 
 
-def gens_frame_sampler(question: str, frame_paths: List[str], model, tokenizer, processor):
+def gens_frame_sampler(question: str, frame_paths: List[str], model, tokenizer, processor,
+    temperature: float=0.0, max_new_tokens: int = 256):
     """
     Use GenS model to identify and score relevant frames for a video question.
     
@@ -283,8 +284,8 @@ def gens_frame_sampler(question: str, frame_paths: List[str], model, tokenizer, 
                 pixel_values=images_tensor,
                 # Uncomment if needed:
                 # pixel_attention_mask=pixel_attention_mask,
-                temperature=0.0,
-                max_new_tokens=256,
+                temperature=temperature,
+                max_new_tokens=max_new_tokens,
                 use_cache=True,
             )
         

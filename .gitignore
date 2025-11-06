@@ -1,3 +1,4 @@
 tokenizer/
+__pycache__
 infer_example.py
 rename_frm.sh

@@ -1,0 +1,7 @@
+transformers==4.45.0
+accelerate==0.34.1
+sentencepiece==0.2.0
+Pillow
+requests
+torchvision
+torch

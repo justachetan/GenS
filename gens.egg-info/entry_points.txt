@@ -1,0 +1,2 @@
+[console_scripts]
+gens = gens.__main__:main
